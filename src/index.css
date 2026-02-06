@@ -50,3 +50,24 @@ body{
 
 .drag-overlay{ transform-origin: 0 0; }
 svg [stroke]{ vector-effect: non-scaling-stroke; }
+
+/* ===== ROYAL GLOW (hover + drop over) ===== */
+.royal-frame::after{
+  content:"";
+  position:absolute;
+  inset:-1px;
+  border-radius: 26px;
+  background:
+    radial-gradient(380px 220px at 25% 20%, rgba(164,140,255,.22), transparent 60%),
+    radial-gradient(320px 220px at 80% 35%, rgba(120,210,220,.18), transparent 62%),
+    radial-gradient(360px 240px at 50% 90%, rgba(255,180,210,.14), transparent 62%);
+  opacity: 0;
+  transition: opacity .22s ease;
+  pointer-events:none;
+}
+
+/* hover */
+.royal-frame:hover::after{ opacity: .55; }
+
+/* isOver у тебя уже даёт ring-1 — используем это как “событие” */
+.royal-frame.ring-1::after{ opacity: .85; }

@@ -1,73 +1,71 @@
-# React + TypeScript + Vite
+# 🏰 Palace DnD Board
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Aesthetic royal-themed drag & drop board with animated background, SVG doodles and stable DragOverlay.
 
-Currently, two official plugins are available:
+Проект сделан как **визуальный и технический showcase**: аккуратный UI, продуманная работа с SVG, Drag&Drop без артефактов и растяжений.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
 
-## React Compiler
+## ✨ Features
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- 🎯 Column-based Drag & Drop (dnd-kit)
+- 🪄 Stable DragOverlay (без изменения размеров при перетаскивании)
+- 🎨 SVG doodles с нормализацией по `viewBox`
+- 🧊 Glassmorphism + palace / fantasy UI
+- 🌌 Генеративный фон (css-doodle + SVG noise)
+- 🧩 Чистая компонентная структура
 
-## Expanding the ESLint configuration
+---
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## 🧱 Tech Stack
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+- **React 19**
+- **TypeScript**
+- **Vite**
+- **@dnd-kit** (core / sortable / utilities)
+- **Tailwind CSS**
+- **css-doodle**
+- SVG (viewBox math, non-scaling stroke)
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+---
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+## 🏗 Architecture Notes
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+- Drag & Drop реализован через `DndContext + SortableContext`
+- Overlay фиксируется по `getBoundingClientRect`, что исключает scale-глитчи
+- SVG-дудлы:
+  - подгружаются через `import.meta.glob`
+  - приводятся к единой визуальной массе через вычисление `stroke-width`
+- UI ориентирован не на CRUD, а на **ощущение интерфейса**
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+---
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+## 📁 Project Structure
+
+src/
+├─ royal/ # core UI & DnD logic
+│ ├─ Board.tsx
+│ ├─ Doodle.tsx
+│ ├─ RoyalBackground.tsx
+│ ├─ NoiseOverlay.tsx
+│ └─ utils.ts
+├─ assets/
+│ ├─ doodles/ # SVG assets
+│ └─ scripts/ # generation helpers
+├─ App.tsx
+└─ main.tsx
+
+
+---
+
+## 🚀 Getting Started
+
+```bash
+npm install
+npm run dev
+
+
+Build for production:
+
+npm run build
+npm run preview

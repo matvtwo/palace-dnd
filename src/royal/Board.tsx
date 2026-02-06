@@ -11,6 +11,7 @@ import { SortableContext, arrayMove, sortableKeyboardCoordinates } from "@dnd-ki
 import { CSS } from "@dnd-kit/utilities";
 import { useSortable, verticalListSortingStrategy } from "@dnd-kit/sortable";
 import { RoyalBackground } from "./RoyalBackground";
+import { CastleBackdrop } from "./CastleBackdrop";
 import { NoiseOverlay } from "./NoiseOverlay";
 import { Doodle } from "./Doodle";
 import { PalaceOutline } from "./PalaceOutline";
@@ -198,6 +199,7 @@ export function RoyalBoard() {
   return (
     <div className="min-h-screen px-8 py-10">
       <RoyalBackground />
+      <CastleBackdrop />
       <NoiseOverlay opacity={0.10} />
 
       <div className="mx-auto max-w-6xl">
